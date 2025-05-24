@@ -34,7 +34,7 @@ def signup_view(request):
             messages.error(request,"Username already exists.")
             return redirect('signup')
         
-        user =User.objects.create_user(username=username,eamil=email,password=password)
+        user =User.objects.create_user(username=username,email=email,password=password)
         messages.success(request, "account created successfully")
         return redirect('login')
     
@@ -54,8 +54,20 @@ def login_view(request):
             messages.error(request, "Invalid credentials.")
             return redirect('login')
         
-        return render(request,'login.html')
+    return render(request,'login.html')
         
+def student_biodata(request):
+    if request.method =='POST':
+        dept=request.POST.get('dept')   
+        age=request.POST.get('age')
+        gender=request.POST.get('gender')
+        mobile_no=request.POST.get('mobile_no')
+        stream=request.POST.get('stream')
+        biodata.objects.create( dept=dept ,age=age , gender= gender ,mobile_no=mobile_no ,stream=stream )
+        return redirect('student_biodata')
+
+    student_biodata=biodata.objects.all
+    return render(request,'biodata.html',{'students_biodata':student_biodata})
 
 
 
