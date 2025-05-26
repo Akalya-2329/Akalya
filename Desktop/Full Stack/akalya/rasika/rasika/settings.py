@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'rasika.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blue',
+        'NAME': 'database_db',
         'USER': 'root',           # your MySQL username
         'PASSWORD': 'Akal2329',  # your MySQL password
         'HOST': 'localhost',

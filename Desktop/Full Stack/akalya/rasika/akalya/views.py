@@ -21,7 +21,7 @@ def student_form (request):
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
  
 def signup_view(request):
@@ -65,13 +65,30 @@ def student_biodata(request):
         stream=request.POST.get('stream')
         biodata.objects.create( dept=dept ,age=age , gender= gender ,mobile_no=mobile_no ,stream=stream )
         return redirect('student_biodata')
+    
 
-    student_biodata=biodata.objects.all
-    return render(request,'biodata.html',{'students_biodata':student_biodata})
-
-
-
+    biodatas=biodata.objects.all
+    return render(request,'biodata.html',{'biodatas':biodatas})
 
 
-        
+def edit_biodata(request, pk):
+    biodatas = get_object_or_404(biodata, pk=pk)
+
+    if request.method == "POST":
+        biodatas.title = request.POST.get("title")
+        biodatas.description = request.POST.get("description")
+        biodatas.credits = request.POST.get("credits")
+        biodatas.save()
+        return redirect("biodatas_ui")
+
+    return render(request, "delete.html"), {
+        "edit_biodata": biodatas,
+        "courses": biodata.objects.all()
+    }
+
+
+def delete_biodata(request, pk):
+    biodatas = get_object_or_404(biodata, pk=pk)
+    biodatas.delete()
+    return redirect("biodatas-ui")
 
