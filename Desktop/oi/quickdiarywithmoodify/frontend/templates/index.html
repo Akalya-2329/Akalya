@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container"></div>
+    <h1>Diary Entries</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="char" name="username" placeholder="UserName" required><br>
+        <input type="number" name="date" placeholder="Date" required><br>
+        <input type="number" name="time" placeholder="Time" required><br>
+        <input type="char" name="mood" placeholder="Mood" required><br>
+        <input type="number" name="mood_intensity" placeholder="Mood_intensity" required><br>
+        <input type="char" name="performance" placeholder="Performance" required><br>
+        <input type="number" name="performance_score" placeholder="Performance_score" required><br>
+        <input type="char" name="stress_level" placeholder="Stress_level" required><br>
+        <input type="char" name="energy_level" placeholder="Energy_level" required><br>
+        <input type="char" name="physical_health" placeholder="Physical_health" required><br>
+        <input type="char" name="activities" placeholder="Activities" required><br>
+        <input type="char" name="social_interaction" placeholder="Social_interaction" required><br>
+        <input type="char" name="weather" placeholder="Weather" required><br>
+        <input type="char" name="mental_clarity" placeholder="Mental_clarity" required><br>
+        <input type="char" name="gratitude_notes" placeholder="Gratitude_notes" required><br>
+        <input type="char" name="self_care" placeholder="Self_care" required><br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Mood Tracker List</h2>
+    <ul>
+        {% for MoodTracker in entries %}
+            <li>{{ MoodTracker.user }} - {{ MoodTracker.date }} - {{ MoodTracker.time }} - {{ MoodTracker.mood }} - {{ MoodTracker.mood_intensity }} - {{ MoodTracker.performance }} - {{ MoodTracker.performance_score }} - {{ MoodTracker.stress_level }} - {{ MoodTracker.energy_level }} - {{ MoodTracker.physical_health }} - {{ MoodTracker.activities }} - {{ MoodTracker.social_interaction }} - {{ MoodTracker.weather }} - {{ MoodTracker.mental_clarity }} - {{ MoodTracker.gratitude_notes }} - {{ MoodTracker.self_care }}</li> 
+    {% empty %}
+                <li>No Users yet.</li>
+            {% endfor %}
+        </ul>
+</div>
+</body>
+</html>
