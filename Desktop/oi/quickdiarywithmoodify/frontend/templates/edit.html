@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: Arial, sans-serif ;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+
+        .container {
+            background-color: #e8f5e9;
+            /*light green */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 128, 0, 3);
+            width:  400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #2e7d32;
+        }
+
+
+        .message {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .message.success {
+            background-color: #c8e6c9;
+            color: #256029;
+        }
+
+        .message.error {
+            background-color: #ffcdd2;
+            color: #c62828;
+        }
+
+        input,
+        button {
+            margin:10px 0;
+            padding: 10px;
+            width:  90%;
+            border-radius: 5px;
+            border: 1px solid #2e7d32;
+        }
+
+        botton {
+            background-color: #2e7d32;
+            color:white ;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        button {
+             background-color: #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Edit MoodTracker</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="username" plaseholder="Username"value="{{entries.date}}" required><br>
+        <input type="numer" name="date" plaseholder="Date"value="{{entries.date}}" required><br>
+        <input type="text" name="time" plaseholder="Time"value="{{entries.time}}" required><br>
+        <input type="number" name="mood" plaseholder="mood"value="{{entries.mood}}" required><br>
+        <input type="text" name="mood_intensity" plaseholder="Stream"value="{{entries.mood_intensity}}" required><br>
+        <input type="text" name="performance" plaseholder="Dept"value="{{entries.performance}}" required><br>
+        <input type="numer" name="performance_score" plaseholder="age"value="{{entries.performance_score}}" required><br>
+        <input type="text" name="stress_level" plaseholder="Gender"value="{{entries.stress_level}}" required><br>
+        <input type="number" name="energy_level" plaseholder="Mobile_no"value="{{entries.energy_level}}" required><br>
+        <input type="text" name="physical_health" plaseholder="Stream"value="{{entries.physical_health}}" required><br>
+        <input type="text" name="activities" plaseholder="Dept"value="{{entries.activities}}" required><br>
+        <input type="numer" name="social_interaction" plaseholder="age"value="{{entries.social_interaction}}" required><br>
+        <input type="text" name="weather" plaseholder="Gender"value="{{entries.weather}}" required><br>
+        <input type="number" name="mental_clarity" plaseholder="Mobile_no"value="{{entries.mental_clarity}}" required><br>
+        <input type="text" name="gratitude_notes" plaseholder="Stream"value="{{entries.gratitude_notes}}" required><br>
+        <input type="text" name="self_care" plaseholder="Dept"value="{{entries.self_care}}" required><br>
+        <button type="submit">Update</button>
+    </form>
+    <h2>Edit MoodTracker</h2>
+        <ul>
+            {% for MoodTracker in entries %}
+            <li>{{ MoodTracker.username }} - {{ MoodTracker.date }} - {{ MoodTracker.time }} - {{ MoodTracker.mood }} -
+                {{ MoodTracker.mood_intensity }} - {{ MoodTracker.performance }} - {{ MoodTracker.performance_score }} -
+                {{ MoodTracker.stress_level }} - {{ MoodTracker.energy_level }} - {{ MoodTracker.physical_health }} -
+                {{ MoodTracker.activities }} - {{ MoodTracker.social_interaction }} - {{ MoodTracker.weather }} -
+                {{ MoodTracker.mental_clarity }} - {{ MoodTracker.gratitude_notes }} - {{ MoodTracker.self_care }}</li>
+            {% endfor %}
+            <li>No entries yet.</li>
+    </div>
+</body>
+</html>

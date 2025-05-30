@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -39,4 +39,119 @@
         </ul>
 </div>
 </body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diary Entries</title>
+    <style>
+        body {
+            background-color: #150e74;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #c9910e;
+            /* light blue */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(223, 97, 14, 0.3);
+
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #208117;
+        }
+
+        .message {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .message.success {
+            background-color: #0cdf13;
+            color: #d349ae;
+        }
+
+        .message.error {
+            background-color: #8f1111;
+            color: #338ea5;
+        }
+
+        input,
+        button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 90%;
+            border-radius: 5px;
+            border: 1px solid #8f4edf;
+        }
+
+        button {
+            background-color: #046e04;
+            color: rgb(37, 30, 124);
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #1b5e20;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Diary Entries</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="date" name="date" required><br>
+            <input type="time" name="time" required><br>
+            <input type="text" name="mood" placeholder="Mood" required><br>
+            <input type="number" name="mood_intensity" placeholder="Mood Intensity" required><br>
+            <input type="text" name="performance" placeholder="Performance" required><br>
+            <input type="number" name="performance_score" placeholder="Performance Score" required><br>
+            <input type="text" name="stress_level" placeholder="Stress Level" required><br>
+            <input type="text" name="energy_level" placeholder="Energy Level" required><br>
+            <input type="text" name="physical_health" placeholder="Physical Health" required><br>
+            <input type="text" name="activities" placeholder="Activities" required><br>
+            <input type="text" name="social_interaction" placeholder="Social Interaction" required><br>
+            <input type="text" name="weather" placeholder="Weather" required><br>
+            <input type="text" name="mental_clarity" placeholder="Mental Clarity" required><br>
+            <input type="text" name="gratitude_notes" placeholder="Gratitude_notes" required><br>
+            <input type="text" name="self_care" placeholder="Self-Care" required><br>
+            <button type="submit">Submit</button>
+        </form>
+
+        <h2>Mood Tracker List</h2>
+        <ul>
+            {% for MoodTracker in entries %}
+            <li>{{ MoodTracker.username }} - {{ MoodTracker.date }} - {{ MoodTracker.time }} - {{ MoodTracker.mood }} -
+                {{
+                MoodTracker.mood_intensity }} - {{ MoodTracker.performance }} - {{ MoodTracker.performance_score }} - {{
+                MoodTracker.stress_level }} - {{ MoodTracker.energy_level }} - {{ MoodTracker.physical_health }} - {{
+                MoodTracker.activities }} - {{ MoodTracker.social_interaction }} - {{ MoodTracker.weather }} - {{
+                MoodTracker.mental_clarity }} - {{ MoodTracker.gratitude_notes }} - {{ MoodTracker.self_care }}</li>
+            {% empty %}
+            <li>No entries yet.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+
 </html>

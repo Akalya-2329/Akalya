@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class MoodTracker(models.Model):
-    username = models.CharField(max_lenth=50,null=True, blank=True) # Link to a user account
+    username = models.CharField(max_length=50,null=True, blank=True) # Link to a user account
     date = models.DateField(auto_now_add=True)  # Auto-set date of entry
     time = models.TimeField(auto_now_add=True)  # Auto-set time of entry
     mood = models.CharField(max_length=50)  # Mood description (e.g., Happy, Sad)

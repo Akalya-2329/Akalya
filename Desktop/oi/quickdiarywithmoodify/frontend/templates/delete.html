@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+
+<body>
+    <!-- templates/students/delete.html -->
+    <h2>Delete entries: {{ entries.username }}</h2>
+    <h3>Delete entries: {{ entries.date }}</h3>
+    <h4>Delete entries: {{ entries.time }}</h4>
+    <h5>Delete entries: {{ entries.mood }}</h5>
+    <h6>Delete entries: {{ entries.mood_intensity }}</h6>
+    <h7>Delete entries: {{ entries.performance }}</h7>
+    <h8>Delete entries: {{ entries.performance_score }}</h8>
+    <h9>Delete entries: {{ entries.stress_level }}</h9>
+    <h10>Delete entries: {{ entries.energy_level }}</h10>
+    <h11>Delete entries: {{ entries.physical_health }}</h11>
+    <h12>Delete entries: {{ entries.activities }}</h12>
+    <h13>Delete entries: {{ entries.social_interaction }}</h13>
+    <h14>Delete entries: {{ entries.weather }}</h14>
+    <h15>Delete entries: {{ entries.mental_clarity }}</h15>
+    <h16>Delete entries: {{ entries.gratitude_notes }}</h16>
+    <h17>Delete entries: {{ entries.self_care }}</h17>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Confirm Delete</button>
+    </form>
+
+
+</body>
+
+</html>

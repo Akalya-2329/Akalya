@@ -1,5 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import *
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+
 
 # Create your views here.
 
@@ -69,4 +73,36 @@ def login_view(request):
             return redirect('login')
         
     return render(request,'login.html')
-        
+def edit_moodtracker(request, pk):
+    entries = get_object_or_404(MoodTracker, pk=pk)
+
+    if request.method == "POST":
+        entries.username = request.POST.get("username")
+        entries.date = request.POST.get("date")
+        entries.time = request.POST.get("time")
+        entries.mood = request.POST.get("mood")
+        entries.mood_intensity = request.POST.get("mood_intensity")
+        entries.performance = request.POST.get("performance")
+        entries.performance_score = request.POST.get("performance_score")
+        entries.stress_level = request.POST.get("stress_level")
+        entries.energy_level = request.POST.get("energy_level")
+        entries.physical_health = request.POST.get("physical_health")
+        entries.activities = request.POST.get("activities")
+        entries.social_interaction = request.POST.get("social_interaction")
+        entries.weather = request.POST.get("weather")
+        entries.mental_clarity = request.POST.get("mental_clarity")
+        entries.gratitude_notes = request.POST.get("gratitude_notes")
+        entries.self_care = request.POST.get("self_care")
+        entries.save()
+        return redirect("edit_moodtracker")
+
+    return render(request, "edit.html", {
+        "edit_moodtracker": entries,
+        "entries": MoodTracker.objects.all()
+    })
+
+
+def delete_moodtracker(request, pk): 
+    entries = get_object_or_404(MoodTracker, pk=pk)
+    entries.delete()
+    return redirect("delete_moodtracker")
